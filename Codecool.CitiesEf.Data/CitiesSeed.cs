@@ -1,4 +1,5 @@
 ﻿using Codecool.CitiesEf.Data.Enities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,7 @@ namespace Codecool.CitiesEf.Data
         }
         public void Seed()
         {
-            context.Database.EnsureDeleted();
-            context.Database.EnsureCreated();
+            context.Database.Migrate();
             if(!context.Cities.Any())
             {
                 context.Cities.AddRange(
