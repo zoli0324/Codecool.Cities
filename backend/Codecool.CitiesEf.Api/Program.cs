@@ -8,7 +8,11 @@ builder.Services.AddCors(options =>
                       builder =>
                       {
                           builder.WithOrigins("http://localhost:3000",
-                                              "https://salmon-forest-0d5e3cc03.1.azurestaticapps.net/");
+                                              "https://salmon-forest-0d5e3cc03.1.azurestaticapps.net/")
+                          .AllowAnyHeader()
+                          .WithHeaders()
+                          .AllowAnyMethod()
+                          .AllowAnyOrigin();
                       });
 });
 // Add services to the container.
