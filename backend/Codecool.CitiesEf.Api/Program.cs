@@ -1,8 +1,16 @@
 using Codecool.CitiesEf.Data;
 using Microsoft.EntityFrameworkCore;
-
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      builder =>
+                      {
+                          builder.WithOrigins("http://localhost:3000",
+                                              "https://salmon-forest-0d5e3cc03.1.azurestaticapps.net/");
+                      });
+});
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -31,6 +39,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
