@@ -9,6 +9,9 @@ on:
       - master
   workflow_dispatch:
 
+env:
+  DOTNET_ROOT: ./backend/
+
 jobs:
   build:
     runs-on: windows-latest
