@@ -9,8 +9,6 @@ on:
       - master
   workflow_dispatch:
 
-env:
-  DOTNET_ROOT: ./backend/
 
 jobs:
   build:
@@ -26,7 +24,7 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build ./backend/Codecool.CitiesEf.sln --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
